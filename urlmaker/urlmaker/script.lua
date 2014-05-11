@@ -2,14 +2,14 @@ require 'md5'
 require 'mime'
 require "iuplua"
 
-local strMD5EncodingAddition = "kkking"
+local strMD5EncodingAddition = "kkking" -- 用于MD5校验的附加字符串后缀
 
 local tInput = {
 	account = "AAA",
 	role = "NAME",
 	roleid = "9527",
 	gateway="1-1",
-	reservation="",
+	reservation="",	-- 保留字段
 	md5="",
 }
 
@@ -35,7 +35,7 @@ function submit:action()
 		tInput.role, tInput.gateway, tInput.account, tInput.roleid, tInput.reservation, tInput.md5
 	)
 	local strURL = mime.b64(strOrg)
-	local strEscapeURL = string.gsub(strURL, "/", "-")
+	local strEscapeURL = string.gsub(strURL, "/", "-")	-- 去除转义字符
 	strEscapeURL = string.gsub(strEscapeURL, "+", "!")
 
  	--iup.Message("URL:",strEscapeURL)
